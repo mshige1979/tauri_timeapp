@@ -1,7 +1,92 @@
-# Tauri + React + Typescript
+# 時計アプリ (Tauri + React)
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+このプロジェクトは、TauriとReactを使用して構築されたデスクトップアプリケーションです。  
+現在時刻の表示、通知機能、そして気象庁APIを利用した天気情報の取得を行います。
 
-## Recommended IDE Setup
+## 主な機能
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- **現在時刻の表示**: アプリ起動時に現在時刻を表示し、1秒ごとに更新します。
+- **通知機能**: 5分刻みの時刻で通知を送信する機能を提供します。
+- **天気情報の取得**: 気象庁APIを使用して、東京または福岡の天気情報を取得して表示します。
+- **デモデータ対応**: ネットワークエラー時にはデモデータを使用して天気情報を表示します。
+
+## 必要な環境
+
+- Node.js (推奨: 最新のLTSバージョン)
+- Rust (推奨: 最新の安定版)
+- Tauri CLI (`cargo install tauri-cli`)
+- Bun (開発用スクリプトに使用)
+
+## セットアップ手順
+
+1. **リポジトリのクローン**
+   ```bash
+   git clone <リポジトリURL>
+   cd test4
+   ```
+
+2. **依存関係のインストール**
+   フロントエンドの依存関係をインストールします。
+   ```bash
+   bun install
+   ```
+
+3. **Rust依存関係の準備**
+   Rustの依存関係は`Cargo.toml`に基づいて自動的に解決されます。
+
+4. **開発サーバーの起動**
+   開発モードでアプリを起動します。
+   ```bash
+   bun run tauri dev
+   ```
+
+5. **ビルド**
+   アプリをリリースビルドします。
+   ```bash
+   bun run tauri build
+   ```
+
+## 使用方法
+
+1. アプリを起動すると、現在時刻が表示されます。
+2. 「天気更新」ボタンをクリックすると、東京または福岡の天気情報が取得されます。
+3. 通知機能を有効にすると、5分刻みの時刻で通知が送信されます。
+
+## プロジェクト構造
+
+```
+test4/
+├── src-tauri/          # Tauriバックエンドコード
+│   ├── src/
+│   │   ├── main.rs     # Rustメインコード
+│   │   ├── build.rs    # ビルドスクリプト
+│   ├── Cargo.toml      # Rust依存関係
+│   ├── tauri.conf.json # Tauri設定ファイル
+├── src/                # フロントエンドコード
+│   ├── App.tsx         # Reactメインコンポーネント
+│   ├── App.css         # スタイルシート
+├── README.md           # プロジェクトの説明
+```
+
+## 主な依存関係
+
+### フロントエンド
+- React
+- Tauri API (`@tauri-apps/api`)
+
+### バックエンド
+- Rust
+- Tauri
+- `reqwest` (HTTPリクエスト)
+- `serde` (JSONシリアライズ/デシリアライズ)
+- `chrono` (日付と時刻の操作)
+
+## 注意事項
+
+- 気象庁APIを使用するため、インターネット接続が必要です。
+- ネットワークエラー時にはデモデータを使用します。
+- 通知機能を使用するには、OSの通知パーミッションを許可する必要があります。
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
